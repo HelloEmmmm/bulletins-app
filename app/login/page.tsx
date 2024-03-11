@@ -15,6 +15,7 @@ export default function Login() {
                 <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     <LoginInput label={'账号'} />
                     <LoginInput label={'密码'} />
+                    <LoginInput label={'手机号'} />
                     {
                         pageType === 'register' && <LoginInput label={'邀请码'} />
                     }
