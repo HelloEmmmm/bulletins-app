@@ -6,7 +6,7 @@ export default function Home() {
         1
       </div>
       <div className={'flex flex-col flex-1 gap-[20px]'}>
-        <div className={'bg-[yellow]'}>1</div>
+        <div className={'bg-[yellow] p-[20px]'}>1</div>
         <div className={'flex-1 bg-[blue]'}>2</div>
       </div>
     </main>
