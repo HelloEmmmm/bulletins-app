@@ -1,5 +1,10 @@
+"use client"
+
+import {useAuth} from "@/app/hooks/useAuth";
 
 export default function Home() {
+    useAuth();
+
   return (
     <main className="flex min-h-screen">
       <div className={'w-[33.33%] bg-[red]'}>

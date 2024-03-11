@@ -1,19 +1,18 @@
-import type { Metadata } from "next";
+"use client"
+
 import { Inter } from "next/font/google";
 import "./globals.css";
+import {useAuth} from "@/app/hooks/useAuth";
+import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Bulletins",
-  description: "Bulletins app",
-};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  useAuth();
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
