@@ -1,10 +1,5 @@
-const {app, BrowserWindow, ipcMain, session, ipcRenderer} = require("electron");
-const serve = require("electron-serve");
+const {app, BrowserWindow, ipcMain, session} = require("electron");
 const path = require("path");
-
-const appServe = app.isPackaged ? serve({
-    directory: path.join(__dirname, "../out")
-}) : null;
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -16,9 +11,7 @@ const createWindow = () => {
     });
 
     if (app.isPackaged) {
-        appServe(win).then(() => {
-            win.loadURL("app://-/login.html");
-        });
+        win.loadURL("https://bulletins-app-git-master-riches-projects.vercel.app");
     } else {
         win.loadURL("http://localhost:3000/login");
         // if (store.get('token')) {
