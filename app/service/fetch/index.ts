@@ -1,6 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-const token = localStorage.getItem('Access-Token');
+let token = '';
+
+if (typeof window !== 'undefined') {
+	// Perform localStorage action
+	token = localStorage.getItem('token') || '';
+}
 
 type CancelTokenMap<K extends keyof any, T> = {
 	[P in K]: T;
@@ -13,7 +18,7 @@ const service = axios.create({
 	baseURL: 'http://39.105.204.185:8787',
 	timeout: 10000,
 	headers: {
-		Authorization: token ? `Bearer ${JSON.parse(token)}` : '',
+		Authorization: token ? `Bearer ${token}` : '',
 	},
 });
 

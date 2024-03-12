@@ -1,38 +1,52 @@
 {
-  "name": "bulletins-app",
-  "version": "0.1.0",
-  "private": true,
-  "main": "main/main.js",
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "el-dev": "concurrently -n \"NEXT,ELECTRON\" -c \"yellow,blue\" --kill-others \"next dev\" \"electron .\"",
-    "el-build": "next build & electron-builder"
-  },
-  "dependencies": {
-    "@types/js-cookie": "^3.0.6",
-    "axios": "^1.6.7",
-    "electron-serve": "^1.3.0",
-    "electron-store": "^8.2.0",
-    "js-cookie": "^3.0.5",
-    "next": "14.1.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20.11.25",
-    "@types/react": "^18.2.64",
-    "@types/react-dom": "^18.2.21",
-    "autoprefixer": "^10.4.18",
-    "concurrently": "^8.2.2",
-    "electron": "^29.1.1",
-    "electron-builder": "^24.13.3",
-    "eslint": "^8.57.0",
-    "eslint-config-next": "14.1.0",
-    "postcss": "^8.4.35",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.4.2"
-  }
+	"name": "bulletins-app",
+	"version": "0.1.0",
+	"private": true,
+	"main": "main/main.js",
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"el-dev": "concurrently -n \"NEXT,ELECTRON\" -c \"yellow,blue\" --kill-others \"next dev\" \"electron .\"",
+		"el-build": "next build & electron-builder",
+		"prepare": "husky install"
+	},
+	"dependencies": {
+		"@types/js-cookie": "^3.0.6",
+		"axios": "^1.6.7",
+		"electron-serve": "^1.3.0",
+		"electron-store": "^8.2.0",
+		"js-cookie": "^3.0.5",
+		"next": "14.1.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"@types/node": "^20.11.25",
+		"@types/react": "^18.2.64",
+		"@types/react-dom": "^18.2.21",
+		"autoprefixer": "^10.4.18",
+		"concurrently": "^8.2.2",
+		"electron": "^29.1.1",
+		"electron-builder": "^24.13.3",
+		"eslint": "^8.57.0",
+		"eslint-config-next": "14.1.0",
+		"eslint-config-prettier": "^9.1.0",
+		"husky": "^9.0.11",
+		"lint-staged": "^15.2.2",
+		"postcss": "^8.4.35",
+		"prettier": "^3.2.5",
+		"tailwindcss": "^3.4.1",
+		"typescript": "^5.4.2"
+	},
+	"lint-staged": {
+		"app/**/*.{js,jsx,ts,tsx}": [
+			"prettier --write",
+			"eslint --cache --fix"
+		],
+		"*.{html,json,md}": [
+			"prettier --write"
+		]
+	}
 }
