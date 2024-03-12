@@ -1,5 +1,6 @@
 interface Window {
     ipc: {
-        send: (key, payload) => void;
+        send: (channel, payload?) => void;
+        on: (channel, payload) => void;
     }
 }

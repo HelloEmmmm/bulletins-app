@@ -3,5 +3,4 @@ export interface CreateUserParams {
     username: string; // 6-20
     password: string // 6-18 不包含特殊字符
     phone_number: number;
-    is_trial: 1 | 2
 }
