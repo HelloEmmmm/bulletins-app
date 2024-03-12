@@ -6,7 +6,7 @@ export default function Home() {
     useAuth();
 
   return (
-    <main className="flex min-h-screen">
+    <div className="flex min-h-screen">
       <div className={'w-[33.33%] bg-[red]'}>
         1
       </div>
@@ -14,6 +14,6 @@ export default function Home() {
         <div className={'bg-[yellow] p-[20px]'}>1</div>
         <div className={'flex-1 bg-[blue]'}>2</div>
       </div>
-    </main>
+    </div>
   );
 }
