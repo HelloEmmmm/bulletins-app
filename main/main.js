@@ -11,7 +11,7 @@ const createWindow = () => {
     });
 
     if (app.isPackaged) {
-        win.loadURL("https://bulletins-app-git-master-riches-projects.vercel.app");
+        win.loadURL("https://princesses.vip");
     } else {
         win.loadURL("http://localhost:3000/login");
         // if (store.get('token')) {
