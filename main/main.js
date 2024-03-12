@@ -1,5 +1,11 @@
 const {app, BrowserWindow, ipcMain, session} = require("electron");
 const path = require("path");
+const serve = require('electron-serve')
+
+
+const appServe = app.isPackaged ? serve({
+    directory: path.join(__dirname, "../out")
+}) : null;
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -11,30 +17,32 @@ const createWindow = () => {
     });
 
     if (app.isPackaged) {
-        win.loadURL("https://princesses.vip");
+        appServe(win).then(() => {
+            win.loadURL("app://-");
+        });
     } else {
-        win.loadURL("http://localhost:3000/login");
-        // if (store.get('token')) {
-        //     win.loadURL("http://localhost:3000/home");
-        // } else {
-        //     win.loadURL("http://localhost:3000/login");
-        // }
+        win.loadURL('http://localhost:3000');
         win.webContents.openDevTools();
         win.webContents.on("did-fail-load", (e, code, desc) => {
             win.webContents.reloadIgnoringCache();
         });
     }
+    win.webContents
+        .executeJavaScript('localStorage.setItem("token", "token");', true)
+        .then((result) => {
+            console.log(result);
+        });
 }
 
 app.on("ready", () => {
     createWindow();
-    session.defaultSession.cookies.set({
-        url: 'http://localhost',
-        name: 'token',
-        value: 'token',
-    }, (e) => {
-        console.log(e)
-    })
+    // session.defaultSession.cookies.set({
+    //     url: app.isPackaged ? 'app://-' : 'http://localhost:3000',
+    //     name: 'token',
+    //     value: 'token',
+    // }, (e) => {
+    //     console.log(e)
+    // })
 });
 
 app.on("window-all-closed", () => {
@@ -46,7 +54,3 @@ app.on("window-all-closed", () => {
 ipcMain.on('message', async (event, arg) => {
     event.reply('message', `${arg} World!`)
 })
-
-// ipcMain.on('getToken', async (event, arg) => {
-//     event.reply('message', token)
-// })
